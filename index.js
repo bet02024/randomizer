@@ -1,3 +1,16 @@
-// run `node index.js` in the terminal
+"use strict";
 
-console.log(`Hello Node.js v${process.versions.node}!`);
+const path = require("path");
+const isLocal = typeof process.pkg === "undefined";
+const basePath = isLocal ? process.cwd() : path.dirname(process.execPath);
+const { startCreating, buildSetup } = require(path.join(
+  basePath,
+  "/src/main.js"
+  //"/src/mainAscend.js"
+  //"/src/main_video.js"
+));
+
+(() => {
+  buildSetup();
+  startCreating();
+})();
